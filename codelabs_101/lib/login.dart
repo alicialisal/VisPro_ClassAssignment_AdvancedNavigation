@@ -23,6 +23,15 @@ class _LoginPageState extends State<LoginPage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -170,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   child: Text('NEXT'),
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/'); // Pindah ke route "/"
+                    Navigator.pushReplacementNamed(context, '/backdrop'); // Pindah ke route "/"
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: kShrineBlue500,

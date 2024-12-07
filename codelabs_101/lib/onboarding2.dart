@@ -12,6 +12,15 @@ class Onboarding2Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       // backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Column(

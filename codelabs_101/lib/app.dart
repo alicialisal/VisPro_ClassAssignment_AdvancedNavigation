@@ -1,13 +1,18 @@
+import 'package:codelabs_101/login.dart';
 import 'package:codelabs_101/onboarding1.dart';
+import 'package:codelabs_101/onboarding2.dart';
+import 'package:codelabs_101/onboarding3.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'backdrop.dart';
+import 'cart.dart';
 import 'category_menu_page.dart';
 import 'colors.dart';
 import 'detail_page.dart';
 import 'home.dart';
 import 'model/products.dart';
+import 'profile.dart';
 import 'supplemental/cut_corners_border.dart';
 
 class MomEaseApp extends StatefulWidget {
@@ -18,18 +23,31 @@ class MomEaseApp extends StatefulWidget {
 }
 
 class _MomEaseAppState extends State<MomEaseApp> {
-  // const MomEaseApp({Key? key}) : super(key: key);
+  int _currentIndex = 0; // Index untuk Bottom Navigation
   Category _currentCategory = Category.all;
+
+  // Daftar halaman untuk Bottom Navigation
+  final List<Widget> _pages = [
+    const HomePage(), // Halaman Home
+    CartPage(), // Halaman Cart
+    ProfilePage(), // Halaman Profile
+  ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'momEase',
-      initialRoute: '/login',
+      initialRoute: '/onboardingscreen1',
       routes: {
-        '/login': (BuildContext context) => const OnboardingScreen(),
+        '/onboardingscreen1': (BuildContext context) => const OnboardingScreen(),
+        '/onboardingscreen2': (BuildContext context) => const Onboarding2Screen(),
+        '/onboardingscreen3': (BuildContext context) => const Onboarding3Screen(),
+        '/login': (BuildContext context) => const LoginPage(),
+        '/homepage': (BuildContext context) => const HomePage(),
+        '/cart': (BuildContext context) => const CartPage(),
+        '/profile': (BuildContext context) => const ProfilePage(),
         // TODO: Change to a Backdrop with a HomePage frontLayer (104)
-        '/': (BuildContext context) => Backdrop(
+        '/backdrop': (BuildContext context) => Backdrop(
              currentCategory: _currentCategory,
              // TODO: Pass_currentCategory for frontLayer (104)
              frontLayer: HomePage(category: _currentCategory),
@@ -49,6 +67,34 @@ class _MomEaseAppState extends State<MomEaseApp> {
         ),
       },
       theme: _kShrineTheme,
+      // home: Scaffold(
+      //   body: IndexedStack(
+      //     index: _currentIndex,
+      //     children: _pages,
+      //   ),
+      //   bottomNavigationBar: BottomNavigationBar(
+      //     currentIndex: _currentIndex,
+      //     onTap: (index) {
+      //       setState(() {
+      //         _currentIndex = index;
+      //       });
+      //     },
+      //     items: const [
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.home),
+      //         label: 'Home',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.shopping_cart),
+      //         label: 'Cart',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.person),
+      //         label: 'Profile',
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
   /// Function to call when a [Category] is tapped.
