@@ -83,22 +83,22 @@ Transisi halaman dengan efek *fade* untuk meningkatkan pengalaman pengguna.
 **Contoh Implementasi**
 ```dart
   Navigator.of(context).push(
-              PageRouteBuilder(
-                settings: RouteSettings(name: routeName), // Tetap gunakan nama rute
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  // Ambil widget berdasarkan nama rute dari MaterialApp
-                  final widgetBuilder =
-                      context.findAncestorWidgetOfExactType<MaterialApp>()?.routes?[routeName];
-                  return widgetBuilder!(context);
-                },
-                transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  );
-                },
-              ),
-            );
+    PageRouteBuilder(
+      settings: RouteSettings(name: routeName), // Tetap gunakan nama rute
+      pageBuilder: (context, animation, secondaryAnimation) {
+      // Ambil widget berdasarkan nama rute dari MaterialApp
+      final widgetBuilder =
+        context.findAncestorWidgetOfExactType<MaterialApp>()?.routes?[routeName];
+        return widgetBuilder!(context);
+      },
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(
+          opacity: animation,
+          child: child,
+        );
+      },
+    ),
+  );
 ```
 
 #### 3. **Error Handling**
