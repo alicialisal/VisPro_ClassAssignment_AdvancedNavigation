@@ -67,6 +67,19 @@ class _MomEaseAppState extends State<MomEaseApp> {
           imageUrl: 'assets/default.png',
         ),
       },
+      onUnknownRoute: (RouteSettings settings) {
+        return MaterialPageRoute(
+          builder: (context) {
+            // Tampilkan dialog atau halaman error
+            return Scaffold(
+              appBar: AppBar(title: Text('Error')),
+              body: Center(
+                child: Text('Route "${settings.name}" not found.'),
+              ),
+            );
+          },
+        );
+      },
       theme: _kShrineTheme,
       // home: Scaffold(
       //   body: IndexedStack(
