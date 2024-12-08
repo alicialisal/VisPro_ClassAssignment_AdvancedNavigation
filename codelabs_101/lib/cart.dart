@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app.dart';
+
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
@@ -15,10 +17,27 @@ class CartPage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1, // Index for CartPage
         onTap: (int index) {
+          String? routeName;
           if (index == 0) {
-            Navigator.pushReplacementNamed(context, '/homepage');
+            routeName = '/backdrop';
           } else if (index == 2) {
-            Navigator.pushReplacementNamed(context, '/profile');
+            routeName = '/profile';
+          }
+
+          if (routeName != null) {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    appRoutes[routeName]!(context),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+              ),
+            );
           }
         },
         items: const [

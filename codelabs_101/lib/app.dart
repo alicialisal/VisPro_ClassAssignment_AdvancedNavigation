@@ -15,6 +15,11 @@ import 'model/products.dart';
 import 'profile.dart';
 import 'supplemental/cut_corners_border.dart';
 
+final Map<String, WidgetBuilder> appRoutes = {
+  '/cart': (BuildContext context) => const CartPage(),
+  '/profile': (BuildContext context) => const ProfilePage(),
+};
+
 class MomEaseApp extends StatefulWidget {
   const MomEaseApp({Key? key}) : super(key: key);
 
@@ -43,9 +48,10 @@ class _MomEaseAppState extends State<MomEaseApp> {
         '/onboardingscreen2': (BuildContext context) => const Onboarding2Screen(),
         '/onboardingscreen3': (BuildContext context) => const Onboarding3Screen(),
         '/login': (BuildContext context) => const LoginPage(),
-        '/homepage': (BuildContext context) => const HomePage(),
+        // '/homepage': (BuildContext context) => const HomePage(),
         '/cart': (BuildContext context) => const CartPage(),
         '/profile': (BuildContext context) => const ProfilePage(),
+        // '/dynamic': (BuildContext context) => const DynamicScreens(),
         // TODO: Change to a Backdrop with a HomePage frontLayer (104)
         '/backdrop': (BuildContext context) => Backdrop(
              currentCategory: _currentCategory,

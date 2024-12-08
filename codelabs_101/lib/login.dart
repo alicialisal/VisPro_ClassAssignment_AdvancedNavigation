@@ -179,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   child: Text('NEXT'),
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/backdrop'); // Pindah ke route "/"
+                    Navigator.pushReplacementNamed(context, '/backdrop');
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: kShrineBlue500,

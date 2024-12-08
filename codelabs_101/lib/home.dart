@@ -3,6 +3,7 @@ import 'package:codelabs_101/model/products_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'app.dart';
 import 'detail_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,16 +34,23 @@ class HomePage extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => DetailPage(
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) => DetailPage(
                   productName: product.name,
                   productDescription: product.description ?? 'No description available.',
                   price: product.price,
                   imageUrl: 'assets/shop_images/${product.assetName}',
                 ),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
               ),
             );
           },
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -108,13 +116,29 @@ class HomePage extends StatelessWidget {
         ],
         currentIndex: 0, // Set index to highlight the current page
         onTap: (int index) {
-          // Handle navigation here
+          String? routeName;
           if (index == 1) {
-            Navigator.pushNamed(context, '/cart');
+            routeName = '/cart';
           } else if (index == 2) {
-            Navigator.pushNamed(context, '/profile');
+            routeName = '/profile';
           }
-        },
+
+          if (routeName != null) {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    appRoutes[routeName]!(context),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+              ),
+            );
+          }
+        }
       ),
     );
   }
