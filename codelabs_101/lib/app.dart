@@ -15,11 +15,6 @@ import 'model/products.dart';
 import 'profile.dart';
 import 'supplemental/cut_corners_border.dart';
 
-final Map<String, WidgetBuilder> appRoutes = {
-  '/cart': (BuildContext context) => const CartPage(),
-  '/profile': (BuildContext context) => const ProfilePage(),
-};
-
 class MomEaseApp extends StatefulWidget {
   const MomEaseApp({Key? key}) : super(key: key);
 

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'app.dart';
-
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
@@ -23,13 +21,17 @@ class CartPage extends StatelessWidget {
           } else if (index == 2) {
             routeName = '/profile';
           }
-
+          
           if (routeName != null) {
-            Navigator.push(
-              context,
+            Navigator.of(context).push(
               PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) =>
-                    appRoutes[routeName]!(context),
+                settings: RouteSettings(name: routeName), // Tetap gunakan nama rute
+                pageBuilder: (context, animation, secondaryAnimation) {
+                  // Ambil widget berdasarkan nama rute dari MaterialApp
+                  final widgetBuilder =
+                      context.findAncestorWidgetOfExactType<MaterialApp>()?.routes?[routeName];
+                  return widgetBuilder!(context);
+                },
                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
                   return FadeTransition(
                     opacity: animation,

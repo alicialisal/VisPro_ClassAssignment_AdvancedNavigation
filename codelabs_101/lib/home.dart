@@ -3,7 +3,6 @@ import 'package:codelabs_101/model/products_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'app.dart';
 import 'detail_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -124,11 +123,15 @@ class HomePage extends StatelessWidget {
           }
 
           if (routeName != null) {
-            Navigator.push(
-              context,
+            Navigator.of(context).push(
               PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) =>
-                    appRoutes[routeName]!(context),
+                settings: RouteSettings(name: routeName), // Tetap gunakan nama rute
+                pageBuilder: (context, animation, secondaryAnimation) {
+                  // Ambil widget berdasarkan nama rute dari MaterialApp
+                  final widgetBuilder =
+                      context.findAncestorWidgetOfExactType<MaterialApp>()?.routes?[routeName];
+                  return widgetBuilder!(context);
+                },
                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
                   return FadeTransition(
                     opacity: animation,
