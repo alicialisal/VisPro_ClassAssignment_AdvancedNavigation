@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -85,6 +87,14 @@ class ProfilePage extends StatelessWidget {
                     child: child,
                   );
                 },
+              ),
+            );
+          } else {
+            log('Navigation error: Route not found for "$routeName"');
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Route not found: $routeName'),
+                duration: Duration(seconds: 2),
               ),
             );
           }

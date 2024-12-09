@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:codelabs_101/model/products.dart';
 import 'package:codelabs_101/model/products_repo.dart';
 import 'package:flutter/material.dart';
@@ -138,6 +140,14 @@ class HomePage extends StatelessWidget {
                     child: child,
                   );
                 },
+              ),
+            );
+          } else {
+            log('Navigation error: Route not found for "$routeName"');
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Route not found: $routeName'),
+                duration: Duration(seconds: 2),
               ),
             );
           }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -38,6 +39,14 @@ class CartPage extends StatelessWidget {
                     child: child,
                   );
                 },
+              ),
+            );
+          } else {
+            log('Navigation error: Route not found for "$routeName"');
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Route not found: $routeName'),
+                duration: Duration(seconds: 2),
               ),
             );
           }
